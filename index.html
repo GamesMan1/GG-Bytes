@@ -12,18 +12,12 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        /* Forzar modo claro u oscuro si data-theme está presente */
-        :root[data-theme="dark"] {
+        /* Solo modo oscuro */
+        :root {
             color-scheme: dark;
             background-color: #080808;
             --main-bg: #080808;
             --main-color: #e0e0e0;
-        }
-        :root[data-theme="light"] {
-            color-scheme: light;
-            background-color: #fff;
-            --main-bg: #fff;
-            --main-color: #000;
         }
         body {
             background-color: var(--main-bg, #080808);
@@ -273,60 +267,6 @@
                 font-size: 1.5rem;
             }
         }
-
-        /* Modo claro automático según el sistema */
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: #fff;
-                color: #000;
-            }
-            header, .products, .contact, footer {
-                background-color: #fff;
-                color: #000;
-                border-color: #2a9df4;
-            }
-            .logo h1, .products h3, .hero h2, .contact h3 {
-                color: #2a9df4;
-            }
-            .card {
-                background-color: #fff;
-                box-shadow: 0 0 15px #2a9df422;
-            }
-            .card:hover {
-                box-shadow: 0 0 25px #2a9df4cc;
-            }
-            .card img, .hero img {
-                filter: drop-shadow(0 0 4px #2a9df4);
-            }
-            .btn-primary {
-                background: linear-gradient(135deg, #2a9df4, #56ccf2);
-                color: #000;
-            }
-            .btn-primary:hover, .btn-primary:focus {
-                background: linear-gradient(135deg, #56ccf2, #2a9df4);
-                box-shadow: 0 0 10px #2a9df4aa;
-            }
-            input, textarea {
-                background-color: #fff;
-                color: #000;
-                border: 1px solid #b0c4d6;
-            }
-            input:focus, textarea:focus {
-                border-color: #2a9df4;
-                box-shadow: 0 0 6px #2a9df4aa;
-            }
-            .btn-submit {
-                background: #2a9df4;
-                color: #fff;
-            }
-            .btn-submit:hover, .btn-submit:focus {
-                background: #56ccf2;
-                box-shadow: 0 0 8px #2a9df4aa;
-            }
-            footer {
-                color: #888;
-            }
-        }
     </style>
 </head>
 <body>
@@ -340,9 +280,6 @@
                 <a href="#productos">Productos</a>
                 <a href="#contacto">Contacto</a>
             </nav>
-            <button id="toggleTheme" aria-label="Cambiar modo claro/oscuro" style="margin-left:1rem;float:right;background:#222;color:#fff;border:none;padding:0.5rem 1rem;border-radius:4px;cursor:pointer;">
-                🌙 Modo oscuro
-            </button>
         </div>
     </header>
 
@@ -419,40 +356,6 @@
             status.textContent = '¡Gracias por contactarnos! Te responderemos pronto.';
             form.reset();
         }, 1500);
-    });
-    </script>
-    <script>
-    // Cambiar tema claro/oscuro y recordar preferencia
-    const themeBtn = document.getElementById('toggleTheme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-    function setTheme(mode) {
-        if (mode === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeBtn.textContent = '🌞 Modo claro';
-        } else if (mode === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeBtn.textContent = '🌙 Modo oscuro';
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            themeBtn.textContent = prefersLight.matches ? '🌞 Modo claro' : '🌙 Modo oscuro';
-        }
-    }
-    // Al cargar, aplicar preferencia guardada o sistema
-    const savedTheme = localStorage.getItem('theme');
-    setTheme(savedTheme);
-
-    themeBtn.addEventListener('click', () => {
-        let current = document.documentElement.getAttribute('data-theme');
-        let next;
-        if (!current) next = prefersLight.matches ? 'dark' : 'light';
-        else next = current === 'dark' ? 'light' : 'dark';
-        setTheme(next);
-        localStorage.setItem('theme', next);
-    });
-
-    // Si el usuario no ha elegido, responde a cambios del sistema
-    prefersLight.addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) setTheme();
     });
     </script>
 </body>
