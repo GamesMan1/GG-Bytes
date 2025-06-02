@@ -21,9 +21,9 @@
         }
         :root[data-theme="light"] {
             color-scheme: light;
-            background-color: #f7f9fa;
-            --main-bg: #f7f9fa;
-            --main-color: #181818;
+            background-color: #fff;
+            --main-bg: #fff;
+            --main-color: #000;
         }
         body {
             background-color: var(--main-bg, #080808);
@@ -277,19 +277,19 @@
         /* Modo claro automático según el sistema */
         @media (prefers-color-scheme: light) {
             body {
-                background-color: #f7f9fa;
-                color: #181818;
+                background-color: #fff;
+                color: #000;
             }
             header, .products, .contact, footer {
-                background-color: #ffffff;
-                color: #181818;
+                background-color: #fff;
+                color: #000;
                 border-color: #2a9df4;
             }
             .logo h1, .products h3, .hero h2, .contact h3 {
                 color: #2a9df4;
             }
             .card {
-                background-color: #f3f6fa;
+                background-color: #fff;
                 box-shadow: 0 0 15px #2a9df422;
             }
             .card:hover {
@@ -300,15 +300,15 @@
             }
             .btn-primary {
                 background: linear-gradient(135deg, #2a9df4, #56ccf2);
-                color: #181818;
+                color: #000;
             }
             .btn-primary:hover, .btn-primary:focus {
                 background: linear-gradient(135deg, #56ccf2, #2a9df4);
                 box-shadow: 0 0 10px #2a9df4aa;
             }
             input, textarea {
-                background-color: #f7f9fa;
-                color: #181818;
+                background-color: #fff;
+                color: #000;
                 border: 1px solid #b0c4d6;
             }
             input:focus, textarea:focus {
