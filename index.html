@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GG Bytes - Componentes para Gamers</title>
+    <style>
+        /* Reset and base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #080808;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            color: #56ccf2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #2a9df4;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-grow: 1;
+        }
+
+        /* Header */
+        header {
+            background-color: #111111;
+            padding: 1rem 0;
+            border-bottom: 2px solid #56ccf2;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo svg {
+            width: 48px;
+            height: 48px;
+            fill: #56ccf2;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #56ccf2;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+        nav {
+            margin-top: 0.75rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a:focus {
+            border-color: #56ccf2;
+        }
+
+        /* Hero section */
+        .hero {
+            margin: 2rem 0 3rem 0;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #56ccf2;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #c1c1c1;
+        }
+        .hero img {
+            margin-top: 2rem;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #56ccf2aa;
+            transition: transform 0.35s ease;
+        }
+        .hero img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Products section */
+        .products {
+            background-color: #111111;
+            padding: 2rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #56ccf259;
+            margin-bottom: 3rem;
+        }
+        .products h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: #56ccf2;
+        }
+        .product-cards {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 0 15px #56ccf222;
+            transition: box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover {
+            box-shadow: 0 0 25px #56ccf2cc;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 4px #56ccf2);
+            transition: transform 0.3s ease;
+        }
+        .card img:hover {
+            transform: scale(1.1);
+        }
+        .card h4 {
+            font-size: 1.25rem;
+            color: #56ccf2;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            flex-grow: 1;
+            color: #c1c1c1;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #56ccf2, #2a9df4);
+            border: none;
+            color: #ffffff;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            user-select: none;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: linear-gradient(135deg, #2a9df4, #56ccf2);
+            box-shadow: 0 0 10px #56ccf2aa;
+            outline: none;
+        }
+
+        /* Contact section */
+        .contact {
+            background-color: #111111;
+            padding: 1rem 0.5rem 1.5rem 0.5rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #56ccf259;
+            max-width: 400px;
+            margin: 0 auto 2rem auto;
+        }
+        .contact h3 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #56ccf2;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        label {
+            font-weight: 600;
+            color: #c1c1c1;
+            font-size: 0.95rem;
+        }
+        input, textarea {
+            background-color: #222;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 0.4rem 0.6rem;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            border-color: #56ccf2;
+            outline: none;
+            box-shadow: 0 0 6px #56ccf2aa;
+        }
+        textarea {
+            min-height: 60px;
+        }
+        .btn-submit {
+            background: #56ccf2;
+            border: none;
+            color: #111;
+            font-weight: 700;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+        .btn-submit:hover, .btn-submit:focus {
+            background: #2a9df4;
+            box-shadow: 0 0 8px #56ccf2aa;
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111111;
+            text-align: center;
+            padding: 1.2rem 1rem;
+            color: #555;
+            border-top: 2px solid #56ccf2;
+            font-size: 0.875rem;
+            user-select: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .products h3, .contact h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo" aria-label="Logo GG Bytes">
+                <img src="logo-ggbytes.png" alt="Logo GG Bytes" style="width: 64px; height: 64px;" />
+                <h1>GG Bytes</h1>
+            </div>
+            <nav aria-label="Navegación principal">
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" role="main" tabindex="-1">
+        <section class="hero" aria-label="Introducción del sitio GG Bytes">
+            <h2>Componentes versátiles para todos los gamers</h2>
+            <p>GG Bytes integra tecnología avanzada y diseño pensado para que cada gamer disfrute su experiencia al máximo.</p>
+            <img src="setup-gamer.png" alt="Setup gamer moderno con componentes tecnológicos" loading="lazy" />
+        </section>
+
+        <section id="productos" class="products" aria-label="Sección de productos GG Bytes">
+            <h3>Nuestros Productos</h3>
+            <div class="product-cards">
+                <article class="card" tabindex="0" aria-labelledby="producto1-titulo">
+                    <img src="teclado-mecanico.png" alt="Teclado mecánico gamer RGB color negro" loading="lazy" />
+                    <h4 id="producto1-titulo">Teclado Mecánico RGB</h4>
+                    <p>Diseñado para máxima precisión y durabilidad con retroiluminación personalizable para adaptarse a tu estilo.</p>
+                </article>
+                <article class="card" tabindex="0" aria-labelledby="producto2-titulo">
+                    <img src="mouse-ergonomico.png" alt="Mouse gamer ergonómico con luces RGB" loading="lazy" />
+                    <h4 id="producto2-titulo">Mouse Ergonómico RGB</h4>
+                    <p>Exactitud y comodidad durante horas con sensores de alta respuesta y diseño adaptable para todo tipo de manos.</p>
+                </article>
+                <article class="card" tabindex="0" aria-labelledby="producto3-titulo">
+                    <img src="auriculares-rgb.png" alt="Auriculares gamer con micrófono y luces RGB" loading="lazy" />
+                    <h4 id="producto3-titulo">Auriculares con Micrófono RGB</h4>
+                    <p>Sumérgete en el juego con sonido envolvente y comunicación clara, con diseño moderno y luces ajustables.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact" aria-label="Formulario de contacto GG Bytes">
+            <h3>Contacto</h3>
+            <form id="contactForm" novalidate>
+                <label for="name">Nombre completo</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre" required aria-required="true" autocomplete="name" />
+                
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required aria-required="true" autocomplete="email" />
+                
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required aria-required="true"></textarea>
+                
+                <button type="submit" class="btn-submit" aria-label="Enviar mensaje de contacto">Enviar</button>
+            </form>
+            <p id="formStatus" aria-live="polite" style="margin-top: 1rem;"></p>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>© 2025 GG Bytes. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    // Form submission handling with client-side validation and feedback
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        if (!form.checkValidity()) {
+            status.style.color = '#ff6b6b';
+            status.textContent = 'Por favor completa todos los campos correctamente.';
+            form.reportValidity();
+            return;
+        }
+
+        // Simulated submission
+        status.style.color = '#56ccf2';
+        status.textContent = 'Enviando mensaje...';
+        // Simulate delay for UX
+        setTimeout(() => {
+            status.textContent = '¡Gracias por contactarnos! Te responderemos pronto.';
+            form.reset();
+        }, 1500);
+    });
+    </script>
+</body>
+</html>
+
