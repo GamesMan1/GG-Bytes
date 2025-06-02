@@ -12,9 +12,22 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        body {
+        /* Forzar modo claro u oscuro si data-theme está presente */
+        :root[data-theme="dark"] {
+            color-scheme: dark;
             background-color: #080808;
-            color: #e0e0e0;
+            --main-bg: #080808;
+            --main-color: #e0e0e0;
+        }
+        :root[data-theme="light"] {
+            color-scheme: light;
+            background-color: #f7f9fa;
+            --main-bg: #f7f9fa;
+            --main-color: #181818;
+        }
+        body {
+            background-color: var(--main-bg, #080808);
+            color: var(--main-color, #e0e0e0);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -327,6 +340,9 @@
                 <a href="#productos">Productos</a>
                 <a href="#contacto">Contacto</a>
             </nav>
+            <button id="toggleTheme" aria-label="Cambiar modo claro/oscuro" style="margin-left:1rem;float:right;background:#222;color:#fff;border:none;padding:0.5rem 1rem;border-radius:4px;cursor:pointer;">
+                🌙 Modo oscuro
+            </button>
         </div>
     </header>
 
@@ -403,6 +419,40 @@
             status.textContent = '¡Gracias por contactarnos! Te responderemos pronto.';
             form.reset();
         }, 1500);
+    });
+    </script>
+    <script>
+    // Cambiar tema claro/oscuro y recordar preferencia
+    const themeBtn = document.getElementById('toggleTheme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+    function setTheme(mode) {
+        if (mode === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeBtn.textContent = '🌞 Modo claro';
+        } else if (mode === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.textContent = '🌙 Modo oscuro';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeBtn.textContent = prefersLight.matches ? '🌞 Modo claro' : '🌙 Modo oscuro';
+        }
+    }
+    // Al cargar, aplicar preferencia guardada o sistema
+    const savedTheme = localStorage.getItem('theme');
+    setTheme(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+        let current = document.documentElement.getAttribute('data-theme');
+        let next;
+        if (!current) next = prefersLight.matches ? 'dark' : 'light';
+        else next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+        localStorage.setItem('theme', next);
+    });
+
+    // Si el usuario no ha elegido, responde a cambios del sistema
+    prefersLight.addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) setTheme();
     });
     </script>
 </body>
