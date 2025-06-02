@@ -261,6 +261,59 @@
             }
         }
 
+        /* Modo claro automático según el sistema */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f7f9fa;
+                color: #181818;
+            }
+            header, .products, .contact, footer {
+                background-color: #ffffff;
+                color: #181818;
+                border-color: #2a9df4;
+            }
+            .logo h1, .products h3, .hero h2, .contact h3 {
+                color: #2a9df4;
+            }
+            .card {
+                background-color: #f3f6fa;
+                box-shadow: 0 0 15px #2a9df422;
+            }
+            .card:hover {
+                box-shadow: 0 0 25px #2a9df4cc;
+            }
+            .card img, .hero img {
+                filter: drop-shadow(0 0 4px #2a9df4);
+            }
+            .btn-primary {
+                background: linear-gradient(135deg, #2a9df4, #56ccf2);
+                color: #181818;
+            }
+            .btn-primary:hover, .btn-primary:focus {
+                background: linear-gradient(135deg, #56ccf2, #2a9df4);
+                box-shadow: 0 0 10px #2a9df4aa;
+            }
+            input, textarea {
+                background-color: #f7f9fa;
+                color: #181818;
+                border: 1px solid #b0c4d6;
+            }
+            input:focus, textarea:focus {
+                border-color: #2a9df4;
+                box-shadow: 0 0 6px #2a9df4aa;
+            }
+            .btn-submit {
+                background: #2a9df4;
+                color: #fff;
+            }
+            .btn-submit:hover, .btn-submit:focus {
+                background: #56ccf2;
+                box-shadow: 0 0 8px #2a9df4aa;
+            }
+            footer {
+                color: #888;
+            }
+        }
     </style>
 </head>
 <body>
